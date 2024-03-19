@@ -1,13 +1,7 @@
-import Homepage from './components/Homepage'
-import Gamepage from './components/Gamepage'
+import Gamepage from "./components/Gamepage";
 
 function App() {
-  return (
-    <>
-      {/* <Homepage></Homepage> */}
-      <Gamepage></Gamepage>
-    </>
-  )
+    return <Gamepage />;
 }
 
 export default App;

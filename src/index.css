@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  background-color: black;
-  margin: 0;
-  padding: 0;
-  color: white;
+:root {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    color: white;
 }
 
-::-webkit-scrollbar{
-  display: none;
+::-webkit-scrollbar {
+    display: none;
 }
