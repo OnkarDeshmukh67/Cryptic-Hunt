@@ -1,7 +1,13 @@
-import "./App.css";
+import Homepage from './components/Homepage'
+import Gamepage from './components/Gamepage'
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <>
+      {/* <Homepage></Homepage> */}
+      <Gamepage></Gamepage>
+    </>
+  )
 }
 
 export default App;
