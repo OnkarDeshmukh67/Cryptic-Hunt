@@ -17,10 +17,10 @@ const Homepage = () => {
     })
 
     gsap.fromTo(".profile_details", { opacity: 0 }, { opacity: 1, duration: 1.5 , display : 'flex', ease: "expoScale(0.5,7,none)", });
-
     gsap.fromTo(".next_btn", {  opacity : 1 }, {opacity : 0});
-
     gsap.fromTo(".back_btn", {  opacity : 0 }, {opacity : 1 , duration : 2});
+
+    gsap.to('.settings_btn' , {display : 'block'})
   }
 
   const handleBack = () => {
@@ -30,11 +30,27 @@ const Homepage = () => {
       duration : 1.5
     })
 
-    gsap.fromTo(".profile_details", { opacity: 1 }, { opacity: 0, duration: 1.5 , display : 'flex', ease: "expoScale(0.5,7,none)" });
+    gsap.fromTo(".profile_details", { opacity: 1 }, { opacity: 0, duration: 1.5 , display : 'flex', ease: "expoScale(0.5,7,none)" })
+    gsap.fromTo(".next_btn", {  opacity : 0 }, {opacity : 1, ease: "expoScale(0.5,7,none)"})
+    gsap.fromTo(".back_btn", {  opacity : 1 }, {opacity : 0 , duration : 2, ease: "expoScale(0.5,7,none)"})
 
-    gsap.fromTo(".next_btn", {  opacity : 0 }, {opacity : 1, ease: "expoScale(0.5,7,none)"});
+    gsap.to('.settings_back_btn' , {display : 'none', duration : 0})
+    gsap.to('.settings_btn' , {display : 'none' , duration : 0})
+    gsap.to(".profile_details", { xPercent : 0, scale : 1});
+  }
 
-    gsap.fromTo(".back_btn", {  opacity : 1 }, {opacity : 0 , duration : 2, ease: "expoScale(0.5,7,none)"});
+  const handleSettings = () =>{
+    gsap.to('.profile_details' , {
+      xPercent : -80 , 
+      scale : 0.75
+    })
+    gsap.to('.settings_back_btn' , {display : 'block'})
+    gsap.to('.settings_btn' , {display : 'none' , duration : 0})
+  }
+  const handleSettingsBack = () =>{
+    gsap.fromTo(".profile_details", { xPercent : -80 , scale : 0.75 }, { xPercent : 0, scale : 1});
+    gsap.to('.settings_back_btn' , {display : 'none', duration : 0})
+    gsap.to('.settings_btn' , {display : 'block'})
   }
 
   return (
@@ -88,7 +104,16 @@ const Homepage = () => {
         <button className="h-6 w-16 bg-[#FED964] flex justify-center items-center mt-8">Begin</button>
       </div>
 
-      <div className='user_details'></div>
+      <button onClick={handleSettings} className="settings_btn absolute right-4 bottom-6 text-xl text-gray-500 hidden">{`Settings >`}</button>
+      <button onClick={handleSettingsBack} className="settings_back_btn absolute right-4 bottom-6 text-xl text-gray-500 hidden">{`< Back`}</button>
+
+      <span className="h-2/5 w-0 border absolute right-1/3"></span>
+
+      <div className='user_details border h-3/4 w-1/3 absolute right-0'>
+
+      </div>
+
+      <footer className="fixed bottom-0 scale-75">Made with <img className="scale-75 inline" src="../images/hearts.png" alt="" /> by Coding Club</footer>
     </div>
   )
 }
