@@ -56,6 +56,8 @@ const Homepage = () => {
   return (
     <div className='w-screen h-screen flex justify-center items-center relative overflow-hidden'>
 
+      <div className="fixed -z-20 w-full h-full"> <img src="../images/Star Animate.png" alt="" /> </div>
+
       <div className='rotating_asteroid w-3/5 h-3/4 flex justify-center items-center absolute'>
 
         <div className='circle relative w-96 h-96 rounded-full border-l-0 border-t-2 border-r-2 border-b-2 border-gray-600'>

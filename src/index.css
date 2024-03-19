@@ -8,3 +8,7 @@
   padding: 0;
   color: white;
 }
+
+::-webkit-scrollbar{
+  display: none;
+}
