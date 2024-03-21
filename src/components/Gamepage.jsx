@@ -36,8 +36,9 @@ const Gamepage = () => {
             });
         }        
         
-        gsap.fromTo('.currPlanet' , {rotateZ : '0deg'} , {rotate: '25deg' , duration : 0.5})
-        gsap.fromTo('.solsys' , {rotate : '0deg'} , {rotate : '-30deg'})
+        gsap.to('.solsys' , {rotate : `${-index.nxt*10}deg`})
+        // gsap.fromTo('.currPlanet' , {rotateZ : '0deg'} , {rotate: '25deg' , duration : 0.5})
+         
             
     };
     const previousPlanet = () => {
@@ -54,15 +55,30 @@ const Gamepage = () => {
                 nxt: index.nxt - 1
             });
 
-            gsap.fromTo('.currPlanet' , {rotateZ : '-25deg'} , {rotate: '0deg' , duration : 0.5})
-            gsap.fromTo('.solsys' , {rotate : '0deg'} , {rotate : '30deg'})
+            gsap.to('.solsys' , {rotate : `${(7 - index.curr)*10}deg`})
+            // gsap.fromTo('.currPlanet' , {rotateZ : '-25deg'} , {rotate: '0deg' , duration : 0.5})
+
     };
 
     const landPlanet = () => {
+        gsap.to('.prevPlanet' , {x: -150})
+        gsap.to('.nxtPlanet' , {x: 150})
+        gsap.to('.currPlanet' , {x: 700 , y : -50 , scale : 0.75 })
+        gsap.to('.solsys' , {x: 750 , y : -350 , scale : .75})
+        gsap.to('.changePlanet' , {opacity : 100  , zIndex : 0})
+    }
+
+    const changePlanet = () => {
+        gsap.to('.prevPlanet' , {x: 0})
+        gsap.to('.nxtPlanet' , {x: 0})
+        gsap.to('.currPlanet' , {x: 0 , y : 0 , scale : 1.25 })
+        gsap.to('.solsys' , {x: 0 , y : 0 , scale : 1})
+        gsap.to('.changePlanet' , {opacity : 0  , zIndex : -10})
     }
     return (
         <>
-            <div className="h-screen w-screen flex justify-center items-center relative overflow-hidden">
+        <div className="w-auto h-auto">
+            <div className="planet_select h-screen w-screen flex justify-center items-center relative overflow-hidden">
               <div className="fixed -z-20 w-full h-full">
                 <img
                     src="../src/assets/GamePlanets/background.png"
@@ -92,7 +108,15 @@ const Gamepage = () => {
                     src={PlanetAssets[index.nxt].url}
                     alt=""
                 />
+
             </div>
+              <div>
+                  <button onClick={changePlanet} className="changePlanet absolute bottom-10 left-10 text-lg text-gray-500 -z-10 opacity-0 block">{`<BACK`}</button>
+              </div>
+              <div className="question w-96 h-full border">
+
+              </div>
+        </div>
         </>
     );
 };
