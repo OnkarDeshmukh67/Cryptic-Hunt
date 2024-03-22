@@ -15,10 +15,61 @@ const Gamepage = () => {
         "Lust",
         "Sloth",
     ];
+    const PlanetsDetails = [
+        {
+            planet : "Gluttony",
+            diameter : '4880 km',
+            dayLength : '4224 hours',
+            avgTemp : '100 to 700 K',
+            climate: 'Scorching'
+        },
+        {
+            planet : "Greed",
+            diameter : '12104 km',
+            dayLength : '28020 hours',
+            avgTemp : '735 K',
+            climate: 'Inferno'
+        },
+        {
+            planet : "Envy",
+            diameter : '12742 km',
+            dayLength : '4860 hours',
+            avgTemp : '185 to 215 K',
+            climate: 'Diverse'
+        },
+        {
+            planet : "Wrath",
+            diameter : '6779 km',
+            dayLength : '246 hours',
+            avgTemp : '130to 308 K',
+            climate: 'Frigid'
+        },
+        {
+            planet : "Pride",
+            diameter : '4880 km',
+            dayLength : '4224 hours',
+            avgTemp : '100 to 700 K',
+            climate: 'Tempestous'
+        },
+        {
+            planet : "Lust",
+            diameter : '139,820km',
+            dayLength : '9.9 hours',
+            avgTemp : '128 to 165 K',
+            climate: 'Icy'
+        },
+        {
+            planet : "Sloth",
+            diameter : '50,704 km',
+            dayLength : '17.2 hours',
+            avgTemp : '49 to 76 K',
+            climate: 'Blustery'
+        }
+    ];
 
-    const PlanetAssets = Planets.map(planet => ({
+    const PlanetAssets = PlanetsDetails.map(planet => ({
         planet,
-        url: `../src/assets/gamePlanets/${planet}.png`
+        url: `../src/assets/gamePlanets/${planet.planet}.png`
     }));
 
     const nextPlanet = () => {
@@ -38,8 +89,9 @@ const Gamepage = () => {
         }        
         
         gsap.to('.solsys' , {rotate : `${-index.nxt*10}deg`})
-        gsap.fromTo('.currPlanet' , {rotateZ : '0deg'} , {rotate: '25deg' , duration : 0.5})
-         
+        gsap.fromTo('.currPlanet' , {rotateZ : '0deg' , scale : 0.5} , {rotate: '75deg' , duration : 0.5 , scale : 1})
+        gsap.fromTo('.nxtPlanet' , {x : -100} , {x : 0 , duration : 0.5})
+        gsap.fromTo('.prevPlanet' ,  {x : 100} , {x : 0 , duration : 0.5})
             
     };
     const previousPlanet = () => {
@@ -57,17 +109,19 @@ const Gamepage = () => {
             });
 
             gsap.to('.solsys' , {rotate : `${(6 - index.curr)*10}deg`})
-            gsap.fromTo('.currPlanet' , {rotateZ : '25deg'} , {rotate: '0deg' , duration : 0.5})
-
+            gsap.fromTo('.currPlanet' , {rotateZ : '75deg' , scale : 0.5} , {rotate: '0deg' , duration : 0.5 , scale : 1})
+            gsap.fromTo('.nxtPlanet' , {x : -100} , {x : 0 , duration : 0.5})
+            gsap.fromTo('.prevPlanet' ,  {x : 100} , {x : 0 , duration : 0.5})
     };
 
     const landPlanet = () => {
         gsap.to('.prevPlanet' , {x: -150})
         gsap.to('.nxtPlanet' , {x: 150})
-        gsap.to('.currPlanet' , {x: 700 , y : -50 , scale : 0.75 })
+        gsap.to('.currPlanet' , {x: 750 , y : -250 , scale : 0.75 })
         gsap.to('.solsys' , {x: 750 , y : -350 , scale : .75})
         gsap.to('.changePlanet' , {opacity : 100  , zIndex : 0})
         gsap.fromTo('.question' , {opacity : 0  , zIndex : -10} , {opacity : 100  , zIndex : 0})
+        gsap.to('.planet_info' , {zIndex :  -10 , opacity : 0})
     }
 
     const changePlanet = () => {
@@ -77,10 +131,42 @@ const Gamepage = () => {
         gsap.to('.solsys' , {x: 0 , y : 0 , scale : 1})
         gsap.to('.changePlanet' , { duration : 1 ,opacity : 0  , zIndex : -10})
         gsap.to('.question' , {opacity : 0  , zIndex : -10 , duration : 0})
+        gsap.to('.planet_info' , {zIndex : 10 , opacity : 1})
     }
     return (
         <>
-        <div className="w-auto h-auto">
+        <div className="w-auto h-auto flex justify-center">
+
+            <div className="navbar fixed h-20 w-screen flex justify-around items-center">
+                <span className="text-[14px]">Profile</span>
+                <span className="text-[14px]">Leaderboard</span>
+                <span className="text-[20px]">Cryptic Hunt</span>
+                <span className="text-[14px]">Rules</span>
+                <span className="text-[14px]">Contact Us</span>
+            </div>
+
+            <div className="planet_info h-1/4 w-1/3 absolute top-14 flex flex-col justify-center items-center z-10">
+                <span className="text-4xl">{Planets[index.curr].toLocaleUpperCase()}</span>
+                <div className="w-full mt-4 flex justify-around items-center text-[12px]">
+                    <div className="flex flex-col justify-center items-center">
+                    <span className="text-gray-500">DIAMETER</span>
+                    <span>{PlanetsDetails[index.curr].diameter}</span>
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                    <span className="text-gray-500">DAY LENGTH</span>
+                    <span> {PlanetsDetails[index.curr].dayLength} </span>
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                    <span className="text-gray-500">AVG TEMPERATURE</span>
+                    <span> {PlanetsDetails[index.curr].avgTemp} </span>
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                    <span className="text-gray-500">CLIMATE</span>
+                    <span> {PlanetsDetails[index.curr].climate} </span>
+                    </div>              
+                </div>
+            </div>
+
             <div className="planet_select h-screen w-screen flex justify-center items-center relative overflow-hidden">
               <div className="fixed -z-20 w-full h-full bg-cover">
                 <img
