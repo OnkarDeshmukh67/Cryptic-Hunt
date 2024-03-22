@@ -69,7 +69,7 @@ const Gamepage = () => {
 
     const PlanetAssets = PlanetsDetails.map(planet => ({
         planet,
-        url: `../src/assets/gamePlanets/${planet.planet}.png`
+        url: `./src/assets/gamePlanets/${planet.planet}.png`
     }));
 
     const nextPlanet = () => {
@@ -171,13 +171,13 @@ const Gamepage = () => {
               <div className="fixed -z-20 w-full h-full bg-cover">
                 <img
                 className="bg-cover"
-                    src="../src/assets/GamePlanets/background.png"
+                    src="./src/assets/GamePlanets/background.png"
                     alt=""
                     />
                 </div>
                 <img
                     className="solsys w-full right-8 absolute scale-90 -top-20"
-                    src="../src/assets/GamePlanets/SolarSystem.png"
+                    src="./src/assets/GamePlanets/SolarSystem.png"
                     alt=""
                 />
                 <img
