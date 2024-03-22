@@ -69,7 +69,7 @@ const Gamepage = () => {
 
     const PlanetAssets = PlanetsDetails.map(planet => ({
         planet,
-        url: `./src/assets/gamePlanets/${planet.planet}.png`
+        url: `src/assets/gamePlanets/${planet.planet}.png`
     }));
 
     const nextPlanet = () => {
