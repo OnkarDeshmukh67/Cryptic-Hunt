@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Homepage = () => {
     useEffect(() => {
@@ -10,6 +10,15 @@ const Homepage = () => {
             ease: "none"
         });
     }, []);
+
+    let time  = new Date()
+
+    const [ ctime , setTime ] = useState(time)
+    const UpdateTime=()=>{
+      time =  new Date()
+      setTime(time)
+    }
+    setInterval(UpdateTime)
 
     const handleNext = () => {
         gsap.to(".rotating_asteroid", {
@@ -35,6 +44,8 @@ const Homepage = () => {
         gsap.fromTo(".back_btn", { opacity: 0 }, { opacity: 1 , zIndex: 10 , duration: 0 });
 
         gsap.to(".settings_btn", { display: "block", zIndex : 10 });
+
+        gsap.to('.countdown' , {opacity : 0})
 
     };
 
@@ -76,6 +87,8 @@ const Homepage = () => {
         gsap.to(".profile_details", { xPercent: 0, scale: 1 });
 
         gsap.to(".user_details",{ opacity : 0 , zIndex : -50 });
+
+        gsap.to('.countdown' , {opacity : 1})
     };
 
     const handleSettings = () => {
@@ -142,29 +155,37 @@ const Homepage = () => {
                         src="../public/planets/Moon.png"
                         alt=""
                     />
+                    <div className="hello_txt  absolute flex justify-center  flex-col h-full w-full right-2/3 z-10">
+                        <h1 className="text-[20px] text-red-800">Attention!!!</h1>
+                        <h1 className="text-[40px]">SPACE CADETS! </h1>
+                        <div className="w-2/3">
 
-                    <div className="hello_txt absolute flex justify-center items-center flex-col h-full w-full right-2/3 z-10">
-                        <h1 className="text-[80px]">Hello</h1>
                         <p className="text-[10px]">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            <br /> elit. Ducimus deleniti laboriosam atque,
-                            corrupti itaque <br />
-                            error iste aliquid quis unde consectetur nesciunt
-                            quisquam <br /> fuga ut fugiat odit. Consequuntur,
-                            soluta esse!
-                            <br />
-                            Voluptatum
+
+                        Welcome to Eta Epsilon II. Our drones are mapping out the entire system for efficient travel. Until then, stay tuned for mission updates from Space Command. 
+
+                        Mission commences in : <br />
                         </p>
+                        </div>
                     </div>
                     <img
                         className="asteroid h-1/2 w-1/2 absolute mt-24 ml-24"
                         src="../public/asteroid.png"
                         alt=""
                     />
+                    
                     <button
                         onClick={handleBack}
                         className="back_btn absolute bottom-1/2 right-4 text-lg text-gray-500 opacity-0 -z-20"
                     >{`< Back`}</button>
+                </div>
+                <div className="countdown -z-50 w-1/4 h-auto absolute -right-20 flex flex-col">
+                    <p>The mission commences in :</p> 
+                    <div className="time h-20 w-full flex justify-center items-center">
+                        <span className="h-full w-16 text-2xl flex justify-center items-center">{ctime.getHours().toLocaleString()}</span>                       
+                        <p className="text-4xl h-full flex justify-center items-center pb-1">:</p>
+                        <span className="h-full w-16 text-2xl flex justify-center items-center">{ctime.getMinutes().toLocaleString()}</span>
+                    </div>
                 </div>
             </div>
 
