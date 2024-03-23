@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-    background-color: black;
-    margin: 0;
-    padding: 0;
-    color: white;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  color: white;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 input{
@@ -19,26 +19,33 @@ input{
 
 
 @keyframes spinner {
-    0% {
-      transform: translate3d(-50%, -50%, 0) rotate(0deg);
-    }
-    100% {
-      transform: translate3d(-50%, -50%, 0) rotate(-360deg);
-    }
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
   }
-  .circle::after {
-    position: absolute;
-    animation: 7s linear infinite spinner;
-    animation-play-state: inherit;
-    border: solid 2.5px transparent;
-    border-bottom-color: white;
-    border-radius: 50%;
-    content: "";
-    height: 101%;
-    width: 101%;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    transform: translate3d(-50%, -50%, 0);
-    will-change: transform;
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(-360deg);
   }
+}
+.circle::after {
+  position: absolute;
+  animation: 7s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 2.5px transparent;
+  border-bottom-color: white;
+  border-radius: 50%;
+  content: "";
+  height: 101%;
+  width: 101%;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+*{
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap')

@@ -117,8 +117,8 @@ const Gamepage = () => {
     const landPlanet = () => {
         gsap.to('.prevPlanet' , {x: -150})
         gsap.to('.nxtPlanet' , {x: 150})
-        gsap.to('.currPlanet' , {x: 750 , y : -250 , scale : 0.75 })
-        gsap.to('.solsys' , {x: 750 , y : -350 , scale : .75})
+        gsap.to('.currPlanet' , {x: 750 , y : -150 , scale : 0.75 , rotate : '90deg' , duration : 0.7 })
+        gsap.to('.solsys' , {x: 750 , y : -350 , scale : .75 , duration : 0.7 })
         gsap.to('.changePlanet' , {opacity : 100  , zIndex : 0})
         gsap.fromTo('.question' , {opacity : 0  , zIndex : -10} , {opacity : 100  , zIndex : 0})
         gsap.to('.planet_info' , {zIndex :  -10 , opacity : 0})
@@ -127,8 +127,8 @@ const Gamepage = () => {
     const changePlanet = () => {
         gsap.to('.prevPlanet' , {x: 0})
         gsap.to('.nxtPlanet' , {x: 0})
-        gsap.to('.currPlanet' , {x: 0 , y : 0 , scale : 1.25 })
-        gsap.to('.solsys' , {x: 0 , y : 0 , scale : 1})
+        gsap.to('.currPlanet' , {x: 0 , y : 0 , scale : 1.25 , rotate : '0deg' , duration : 0.7})
+        gsap.to('.solsys' , {x: 0 , y : 0 , scale : 1 , duration : 0.7})
         gsap.to('.changePlanet' , { duration : 1 ,opacity : 0  , zIndex : -10})
         gsap.to('.question' , {opacity : 0  , zIndex : -10 , duration : 0})
         gsap.to('.planet_info' , {zIndex : 10 , opacity : 1})
@@ -206,6 +206,7 @@ const Gamepage = () => {
                 <span className="Q_name w-full text-center">{`Stellar Conundrum : Query ${level}`} </span>
                 <div className="q_space w-3/4 border h-52  bg-black rounded-2xl"></div>
                 <p className="q_description w-3/4 h-auto">{question}</p>
+                <input type="text" className="border-b-2 "/>
                 <button className="border w-48 h-8 rounded-2xl bg-[#D9D9D9]/[0.22] tracking-wider text-sm">Submit</button>
                 <div className="progressbar w-56 h-2 border rounded-2xl bg-[#454545] "></div>
               </div>
