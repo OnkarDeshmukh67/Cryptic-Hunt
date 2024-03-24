@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { gsap } from "gsap";
+import Leaderboard from "./Leaderboard";
 
 const Gamepage = () => {
     const [index, setIndex] = useState({ prev: 6, curr: 0, nxt: 1 });
@@ -133,16 +134,26 @@ const Gamepage = () => {
         gsap.to('.question' , {opacity : 0  , zIndex : -10 , duration : 0})
         gsap.to('.planet_info' , {zIndex : 10 , opacity : 1})
     }
+
+    const loadLeaderboard = () => {
+        gsap.to('.leaderboard_wrapper' , {opacity : 1 , zIndex : 20 , duration : 0.7})
+        gsap.to('.planet_info' , {zIndex : -20 , opacity : 0})
+        gsap.to('.ldrbrd_back' , {zIndex : 10})
+    }   
+
+    const backLeaderboard = () => {
+        gsap.to('.leaderboard_wrapper' , {opacity : 0 , zIndex : -20})
+        gsap.to('.planet_info' , {zIndex : 20 , opacity : 1  , duration : 0.7})
+    }
     return (
         <>
-        <div className="w-auto h-auto flex justify-center">
-
-            <div className="navbar fixed h-20 w-screen flex justify-around items-center">
-                <span className="text-[14px]">Profile</span>
-                <span className="text-[14px]">Leaderboard</span>
-                <span className="text-[20px]">Cryptic Hunt</span>
-                <span className="text-[14px]">Rules</span>
-                <span className="text-[14px]">Contact Us</span>
+        <div className=" w-auto h-auto flex justify-center relative z-10">
+            <div className="navbar fixed h-20 w-screen flex justify-around items-center  z-50">
+                <button className="text-[14px]">Profile</button>
+                <button onClick={loadLeaderboard} className="text-[14px]">Leaderboard</button>
+                <button className="text-[20px]">Cryptic Hunt</button>
+                <button className="text-[14px]">Rules</button>
+                <button className="text-[14px]">Contact Us</button>
             </div>
 
             <div className="planet_info h-1/4 w-1/3 absolute top-14 flex flex-col justify-center items-center z-10">
@@ -210,6 +221,10 @@ const Gamepage = () => {
                 <button className="border w-48 h-8 rounded-2xl bg-[#D9D9D9]/[0.22] tracking-wider text-sm">Submit</button>
                 <div className="progressbar w-56 h-2 border rounded-2xl bg-[#454545] "></div>
               </div>
+        </div>
+        <div className="leaderboard_wrapper w-auto h-auto opacity-0 fixed top-0">
+            <button onClick={backLeaderboard} className="ldrbrd_back absolute left-96 top-24 -z-30">{`< Back`}</button>
+            <Leaderboard />
         </div>
         </>
     );

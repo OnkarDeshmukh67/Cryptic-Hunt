@@ -170,7 +170,7 @@ const Homepage = () => {
                     </div>
                     <img
                         className="asteroid h-1/2 w-1/2 absolute mt-24 ml-24"
-                        src="../public/asteroid.png"
+                        src="./public/asteroid.png"
                         alt=""
                     />
                     
